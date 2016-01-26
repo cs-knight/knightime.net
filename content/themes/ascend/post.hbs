@@ -1,0 +1,89 @@
+{{!< default}}
+{{! Top line inserts this template on main layout}}
+
+{{! Post template }}
+{{#post}}
+<main id="main-asnd">
+	<article id="post-page-asnd" class="{{post_class}}">
+		
+		<header class="post-header">
+			<span class="post-meta-info">
+				<time>{{date format="MMMM DD, YYYY"}}</time>
+				<div class="tags-block">
+					{{tags separator=" • "}}
+				</div>
+			</span>
+
+			{{#if image}}
+			<img src="{{image}}" alt="{{title}}">
+			{{/if}}
+			
+			<h1>{{title}}</h1>
+		</header>
+
+		<section id="post-content-asnd">
+			{{content}}
+		</section>
+
+		<footer id="author-share-asnd">
+			<section class="author-section">
+				{{#author}}
+				{{#if image}}
+				<img class="author-pic" src="{{image}}" alt="{{name}}">
+				{{/if}}
+
+				<h4 class="author-name"><a href="{{url}}">{{name}}</a></h4>
+
+				{{#if bio}}
+				<p class="author-bio">{{bio}}</p>
+				{{/if}}
+
+				{{#if website}}
+				<a class="author-website" href="{{website}}">{{website}}</a>
+				{{/if}}
+				{{/author}}
+			</section>
+
+			<section class="jump-to-posts">
+				<h4>More to read</h4>
+				{{#next_post}}
+				<div>
+					<span class="next-post-label">NEXT POST <i class="fa fa-angle-right"></i></span>
+					<a href="{{url}}">{{title}}</a>
+					<p>
+						{{excerpt words="32"}}...
+					</p>
+				</div>
+				{{/next_post}}
+
+				{{#prev_post}}
+				<div>
+					<span class="prev-post-label"><i class="fa fa-angle-left"></i> PAST POST</span>
+					<a href="{{url}}">{{title}}</a>
+					<p>
+						{{excerpt words="32"}}...
+					</p>
+				</div>
+				{{/prev_post}}
+			</section>
+
+			<section id="dynacomments" data-backuseid="{{id}}"></section>
+
+		</footer>
+	</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'knightime'; // required: replace example with your forum shortname
+    var disqus_identifier = '{{post.id}}';
+ 
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> 
+</main>
+{{/post}}

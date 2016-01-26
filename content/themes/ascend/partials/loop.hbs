@@ -1,0 +1,26 @@
+{{! Loop partial that displays the articles query on posts feed}}
+
+{{#foreach posts}}
+<article class="{{post_class}}">
+
+	<header class="post-header">
+		<<span class="post-meta">
+    <time datetime="{{date format='YYYY-MM--DD'}}">{{date format="DD MMM YYYY"}}</time> 
+    {{#if tags}}on {{tags}}{{/if}} 
+    <a href="{{url}}#disqus_thread">Comments</a>
+</span>
+			</div>
+		</span>
+
+		<h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+
+		<span class="post-author-link">by {{author}}</span>
+	</header>
+	<!-- .post-header -->
+  <div class="post-content">
+    <p>{{content preview="true"}}</p>
+    <p class="read-more"><a class="read-more-link" href="{{url}}" title="{{title}}">Continue reading &rarr;</a></p>
+  </div>
+<!-- .post-content -->
+</article>
+{{/foreach}}
