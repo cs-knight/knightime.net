@@ -1,2 +1,3 @@
 node_modules
-**/ghost.db
+content/data/ghost.db
+content/data/ghost-dev.db
