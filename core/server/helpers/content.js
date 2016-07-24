@@ -14,7 +14,7 @@ var hbs             = require('express-hbs'),
 
 content = function (options) {
     var truncateOptions = (options || {}).hash || {};
-    truncateOptions = _.pick(truncateOptions, ['words', 'characters', 'preview']);
+    truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
     _.keys(truncateOptions).map(function (key) {
         truncateOptions[key] = parseInt(truncateOptions[key], 10);
     });
@@ -32,18 +32,7 @@ content = function (options) {
         );
     }
 
-    else if ((truncateOptions.hasOwnProperty('preview')) && (this.html.indexOf('<!--preview-->')) > 0) {
-        var split = this.html.split('<!--preview-->', 2);
-        excerpt = split[0];
-        excerpt += '&hellip;\n';
-        return new hbs.handlebars.SafeString(excerpt);
-    }
-
-    var random = Math.floor((Math.random() * 1000000) + 1);
-    var complete = this.html;
-    complete += '\n<p id="del_' + random + '"></p>';
-
-    return new hbs.handlebars.SafeString(complete);
+    return new hbs.handlebars.SafeString(this.html);
 };
 
 module.exports = content;
